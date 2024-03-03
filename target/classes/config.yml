@@ -1,0 +1,126 @@
+# WARNING
+# If you encounter a error after changing versions that is because graves have items that don't exists anymore. You will have to reset all graves.
+# If you are on YML Storage just delete graves.yml in your main world folder
+# If you are on Mongo or SQL you need to delete your collection/table named "graves".
+
+
+# get alerted for plugins updates
+check-updates: true
+
+
+
+# Information for connecting to the storage system
+storage-info:
+  # Available storage types: "yml", "mongodb", "sql".
+  # If using yml you do not have to change anything other than the type.
+  type: "yml"
+
+  # Host address for the database (e.g., localhost or IP address)
+  host: "127.0.0.1"
+  # Port number for the database (e.g., 27017 or any port)
+  port: 27017
+
+  # Database name for MongoDB or SQL database
+  dbName: "Graves"
+
+  # Authentication details (if required)
+  auth:
+    # Indicates whether authentication is enabled
+    authed: false
+    # Username for authentication (if required)
+    username: "user"
+    # Password for authentication (if required)
+    password: "12345"
+
+
+
+# Configuration for Grave Item
+grave-item:
+  # Enables the grave item feature. When enabled, players receive an item upon death.
+  enabled: true
+
+  # Type of item players receive upon death.
+  # Type options: "compass", "book"
+  # If an unsupported type is chosen, the item will have no functionality.
+  item-type: "compass"
+
+  # Determines if players can click the item to send the click message below.
+  # The click has a cooldown due to some placeholders using intensive math like %distance%
+  item-click: true
+
+  # Message displayed when players left-click with grave item.
+  # If message starts with '/' it will make player run as a command
+  # Example command "/minecraft:teleport %x% %y% %z%"
+  item-click-message: "&aYou are %distance% blocks away from your grave."
+
+  # Name of the item
+  item-name: "&aGrave %x%, %y%, %z%"
+  item-lore:
+    - "&r "
+    - "&cLeft click to see grave distance!"
+    - "&r "
+
+  # Remove item from player inventory after clicking grave.
+  # Does not remove item if it is put in chest
+  remove-item: true
+
+  # Determines if the compass should point at the grave.
+  compass-point: true
+
+  # Contents of the book players receive upon death.
+  book-contents:
+    - "Rest In Peace, %player%."
+    - "Your grave is located at %x%, %y%, %z%"
+
+
+
+# Configuration for Grave Settings
+grave:
+  # Determines the type of grave marker.
+  # Options: "skull". More will be added soon.
+  # "skull" shows the players head
+  grave-type: skull
+
+  # Determines whether graves are private.
+  # If set to false, players can claim other player's graves.
+  private: true
+
+  # Maximum allowed number of graves per player.
+  # Set to 0 to allow unlimited graves, this will cause lag if there are hundreds of graves.
+  max-allowed: 10
+
+  # Specifies the block underneath a grave.
+  grave-under-block: "cobblestone"
+
+  # Time in seconds before a grave should be automatically deleted.
+  # Set to 0 to disable automatic grave despawn.
+  delete-time: 86400  # 24 hours by default
+
+  # Configuration for the sign placed next to graves.
+  grave-sign: true # is the sign enabled?
+  grave-sign-contents:
+    # Each line of the sign's text. (MAX 4)
+    - " "
+    - "R.I.P"
+    - "%player%"
+    - " "
+
+
+general-messages:
+  # Message displayed when player dies and spawns a grave
+  grave-spawn: "&aYour grave has been spawned at x%x%, y%y%, z%z%."
+
+  # Message displayed when a player tries to interact with a grave that belongs to another player.
+  wrong-player: "&cSorry, this grave belongs to %player%. You cannot interact with it."
+
+  # Message displayed when a player tries to interact with a non-existing grave.
+  grave-deleted: "&cThis grave no longer exists."
+
+  # Message displayed when one of a player's graves has expired and been removed.
+  grave-expired: "&cOne of your graves has expired and been removed. Remember to collect your items in time next time."
+
+  # Message displayed to inform players to right-click on graves to open them.
+  break: "&cRight-click on graves to access their contents."
+
+  # Message displayed when a player's grave isn't spawned due to reaching the maximum allowed graves.
+  max-graves: "&cYou've reached the maximum number of graves allowed. A new grave cannot be spawned."
