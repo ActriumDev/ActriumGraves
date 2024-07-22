@@ -9,8 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import xyz.actrium.graves.ActriumGraves;
 import xyz.actrium.graves.config.ConfigHandler;
 import xyz.actrium.graves.cooldown.BasicCooldown;
-import xyz.actrium.graves.death.Death;
-import xyz.actrium.graves.managers.ItemManager;
+import xyz.actrium.graves.item.ItemManager;
 
 public class ItemUseListener implements Listener {
     private final BasicCooldown basicCooldown = new BasicCooldown(3500);

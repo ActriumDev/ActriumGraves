@@ -1,7 +1,6 @@
-package xyz.actrium.graves.managers;
+package xyz.actrium.graves;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,7 +12,6 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.Player;
-import xyz.actrium.graves.ActriumGraves;
 import xyz.actrium.graves.config.ConfigHandler;
 import xyz.actrium.graves.config.impl.GraveConfig;
 import xyz.actrium.graves.death.Death;

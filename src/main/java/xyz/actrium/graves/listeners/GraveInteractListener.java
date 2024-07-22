@@ -1,13 +1,9 @@
 package xyz.actrium.graves.listeners;
 
 import org.bukkit.Bukkit;
-import org.bukkit.EntityEffect;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -19,7 +15,7 @@ import xyz.actrium.graves.config.impl.GraveConfig;
 import xyz.actrium.graves.config.impl.MessagesConfig;
 import xyz.actrium.graves.cooldown.BasicCooldown;
 import xyz.actrium.graves.death.Death;
-import xyz.actrium.graves.managers.GraveManager;
+import xyz.actrium.graves.GraveManager;
 import xyz.actrium.graves.util.StringUtils;
 
 public class GraveInteractListener implements Listener {

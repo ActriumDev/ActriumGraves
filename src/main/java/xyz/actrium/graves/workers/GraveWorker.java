@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import xyz.actrium.graves.ActriumGraves;
 import xyz.actrium.graves.config.ConfigHandler;
-import xyz.actrium.graves.managers.GraveManager;
+import xyz.actrium.graves.GraveManager;
 import xyz.actrium.graves.util.StringUtils;
 
 public class GraveWorker extends BukkitRunnable {

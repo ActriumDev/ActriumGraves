@@ -1,6 +1,5 @@
 package xyz.actrium.graves.listeners.block;
 
-import java.util.Iterator;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,7 +8,7 @@ import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import xyz.actrium.graves.ActriumGraves;
-import xyz.actrium.graves.managers.GraveManager;
+import xyz.actrium.graves.GraveManager;
 
 public class BlockBreakListeners implements Listener {
     @EventHandler

@@ -15,14 +15,12 @@ import xyz.actrium.graves.listeners.PlayerDeathListener;
 import xyz.actrium.graves.listeners.PlayerJoinListener;
 import xyz.actrium.graves.listeners.PlayerRespawnListener;
 import xyz.actrium.graves.listeners.block.BlockBreakListeners;
-import xyz.actrium.graves.managers.GraveManager;
-import xyz.actrium.graves.managers.ItemManager;
-import xyz.actrium.graves.managers.StorageManager;
+import xyz.actrium.graves.item.ItemManager;
+import xyz.actrium.graves.menu.MenuManager;
+import xyz.actrium.graves.storage.StorageManager;
 import xyz.actrium.graves.update.UpdateChecker;
 import xyz.actrium.graves.util.Logger;
 import xyz.actrium.graves.workers.GraveWorker;
-
-import java.util.concurrent.Callable;
 
 public class ActriumGraves extends JavaPlugin {
 
@@ -42,6 +40,8 @@ public class ActriumGraves extends JavaPlugin {
     public String version;
 
     private GraveCommand graveCommand;
+
+    private MenuManager menuManager;
 
     public static ActriumGraves get() {
         return instance;
@@ -91,6 +91,7 @@ public class ActriumGraves extends JavaPlugin {
         this.updateChecker = new UpdateChecker(this.version);
         this.graveManager = new GraveManager(this);
         this.itemManager = new ItemManager();
+        this.menuManager = new MenuManager();
     }
 
     private void registerPermissions(PluginManager pluginManager) {
@@ -140,6 +141,10 @@ public class ActriumGraves extends JavaPlugin {
 
     public ItemManager getItemHandler() {
         return itemManager;
+    }
+
+    public MenuManager getMenuManager() {
+        return menuManager;
     }
 
     public void disable() {

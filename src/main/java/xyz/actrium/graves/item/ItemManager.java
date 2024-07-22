@@ -1,4 +1,4 @@
-package xyz.actrium.graves.managers;
+package xyz.actrium.graves.item;
 
 import java.util.ListIterator;
 import org.bukkit.Location;

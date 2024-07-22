@@ -16,7 +16,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import xyz.actrium.graves.config.ConfigHandler;
 import xyz.actrium.graves.config.impl.GraveConfig;
 import xyz.actrium.graves.death.Death;
-import xyz.actrium.graves.managers.GraveManager;
+import xyz.actrium.graves.GraveManager;
 
 public class PlayerDeathListener implements Listener {
     private final GraveConfig graveConfig = ConfigHandler.get().getGraveConfig();

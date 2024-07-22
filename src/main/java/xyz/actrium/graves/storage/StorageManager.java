@@ -1,4 +1,4 @@
-package xyz.actrium.graves.managers;
+package xyz.actrium.graves.storage;
 
 import xyz.actrium.graves.ActriumGraves;
 import xyz.actrium.graves.config.ConfigHandler;

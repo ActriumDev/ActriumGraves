@@ -7,7 +7,7 @@ import xyz.actrium.graves.Permissions;
 import xyz.actrium.graves.commands.GraveCommand;
 import xyz.actrium.graves.commands.SubCommand;
 import xyz.actrium.graves.death.Death;
-import xyz.actrium.graves.managers.GraveManager;
+import xyz.actrium.graves.GraveManager;
 import xyz.actrium.graves.util.LocationUtils;
 
 public class AdminDeleteGraveSubCommand extends SubCommand {

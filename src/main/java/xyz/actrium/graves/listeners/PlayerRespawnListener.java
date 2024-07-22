@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import xyz.actrium.graves.ActriumGraves;
 import xyz.actrium.graves.config.ConfigHandler;
 import xyz.actrium.graves.death.Death;
-import xyz.actrium.graves.managers.GraveManager;
+import xyz.actrium.graves.GraveManager;
 
 public class PlayerRespawnListener implements Listener {
 

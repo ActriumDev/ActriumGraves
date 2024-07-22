@@ -14,7 +14,7 @@ import xyz.actrium.graves.config.ConfigHandler;
 import xyz.actrium.graves.config.impl.GraveItemConfig;
 import xyz.actrium.graves.death.Death;
 import xyz.actrium.graves.item.GraveItem;
-import xyz.actrium.graves.managers.ItemManager;
+import xyz.actrium.graves.item.ItemManager;
 import xyz.actrium.graves.util.LocationUtils;
 import xyz.actrium.graves.util.StringUtils;
 

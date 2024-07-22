@@ -1,11 +1,9 @@
 package xyz.actrium.graves.commands;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Warning;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import xyz.actrium.graves.death.Death;
-import xyz.actrium.graves.managers.GraveManager;
+import xyz.actrium.graves.GraveManager;
 import xyz.actrium.graves.util.CC;
 
 public class GraveCommand implements CommandExecutor, TabCompleter {
