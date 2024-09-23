@@ -1,4 +1,4 @@
-## This plugin code is rushed and not really good, I will be rewriting most of this when I get time.
+## I have discontinued this project as I want to work on bigger things. This plugin code is rushed and not really good.. Any issues or support wont be looked at.
 
 Graphics are currently being made.
 ![Actrium Graves! Simple, Easy, and Customizable all in one!](https://cdn.modrinth.com/data/cached_images/7257439657b22d57bee13cea87a1ae6777980f80.png)
