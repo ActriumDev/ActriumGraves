@@ -8,11 +8,7 @@ public class MenuElement {
     private final ItemStack item;
     private final ClickAction onClick;
 
-    public MenuElement(
-            int slot,
-            ItemStack item,
-            ClickAction onClick
-    ) {
+    public MenuElement(int slot, ItemStack item, ClickAction onClick) {
         this.slot = slot;
         this.item = item;
         this.onClick = onClick;

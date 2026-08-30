@@ -79,8 +79,7 @@ public class MenuManager implements Listener {
 
         int slot = event.getSlot();
 
-        Map<Integer, MenuElement> elementMap =
-                elements.get(player.getUniqueId());
+        Map<Integer, MenuElement> elementMap = elements.get(player.getUniqueId());
         if (elementMap == null) return;
 
         MenuElement element = elementMap.get(slot);
@@ -128,9 +127,7 @@ public class MenuManager implements Listener {
     }
 
     public boolean hasUIOpen(Player player) {
-        return openUIs.containsKey(
-                player.getUniqueId()
-        );
+        return openUIs.containsKey(player.getUniqueId());
     }
 
 

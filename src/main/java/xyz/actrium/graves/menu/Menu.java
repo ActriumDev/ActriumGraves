@@ -12,10 +12,7 @@ public class Menu {
     private final int size;
     private final String title;
 
-    protected Menu(
-            int size,
-            String title
-    ) {
+    protected Menu(int size, String title) {
         if (size % 9 != 0) {
             throw new IllegalArgumentException(
                     "Inventory size must be divisible by 9."
@@ -48,15 +45,11 @@ public class Menu {
         );
 
         for (MenuElement element : getElements(viewer)) {
-            if (element.getSlot() < 0 ||
-                    element.getSlot() >= size) {
+            if (element.getSlot() < 0 || element.getSlot() >= size) {
                 continue;
             }
 
-            inventory.setItem(
-                    element.getSlot(),
-                    element.getItem()
-            );
+            inventory.setItem(element.getSlot(), element.getItem());
         }
 
         return inventory;
