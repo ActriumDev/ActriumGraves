@@ -23,7 +23,7 @@ public class Death {
         this.graveLocation = BlockUtils.findGraveSpot(player.getLocation().getBlock().getLocation());
         this.timeOfDeath = System.currentTimeMillis();
 
-        this.inventoryContents = player.getInventory().getContents();
+        this.inventoryContents = player.getInventory().getStorageContents();
         this.armorContents = player.getInventory().getArmorContents();
         this.offhandItem = player.getInventory().getItemInOffHand();
     }

@@ -16,6 +16,7 @@ import xyz.actrium.graves.config.impl.MessagesConfig;
 import xyz.actrium.graves.cooldown.BasicCooldown;
 import xyz.actrium.graves.death.Death;
 import xyz.actrium.graves.GraveManager;
+import xyz.actrium.graves.menu.impl.GraveMenu;
 import xyz.actrium.graves.util.StringUtils;
 
 public class GraveInteractListener implements Listener {
@@ -46,14 +47,17 @@ public class GraveInteractListener implements Listener {
                 return;
             }
 
-            GraveManager.get().removeGrave(data);
-            ActriumGraves.get().getItemHandler().removeItem(player);
+            if (player.isSneaking()) {
+                GraveManager.get().removeGrave(data);
+                ActriumGraves.get().getItemHandler().removeItem(player);
+                player.getInventory().setContents(data.getInventoryContents());
+                player.getInventory().setArmorContents(data.getArmorContents());
+                player.getInventory().setItemInOffHand(data.getOffhandItem());
+                player.getWorld().playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 1.0F, 1.0F);
+                return;
+            }
 
-            player.getInventory().setContents(data.getInventoryContents());
-            player.getInventory().setArmorContents(data.getArmorContents());
-            player.getInventory().setItemInOffHand(data.getOffhandItem());
-
-            player.getWorld().playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 1.0F, 1.0F);
+            ActriumGraves.get().menuManager.open(player, new GraveMenu(data));
 
         }
     }
