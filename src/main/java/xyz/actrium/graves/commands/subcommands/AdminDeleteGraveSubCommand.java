@@ -23,7 +23,7 @@ public class AdminDeleteGraveSubCommand extends SubCommand {
 
     @Override
     public String getPermission() {
-        return Permissions.ADMIN_DELETE.asString();
+        return Permissions.ADMIN.asString();
     }
 
     @Override

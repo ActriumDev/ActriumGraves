@@ -15,7 +15,6 @@ public class GraveConfig extends SectionConfig {
     public boolean graveSign;
     public int maxGraves;
     public int deletionTime;
-    public Material blockUnderGrave;
     public List<String> graveSignContents;
 
     public HashMap<World.Environment, Boolean> allowedDimensions;
@@ -43,7 +42,6 @@ public class GraveConfig extends SectionConfig {
             return;
         }
 
-        this.blockUnderGrave = material;
         this.deletionTime = this.section.getInt("delete-time");
         this.graveSign = this.section.getBoolean("grave-sign");
         this.graveSignContents = this.section.getStringList("grave-sign-contents");

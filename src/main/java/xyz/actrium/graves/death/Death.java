@@ -12,22 +12,31 @@ public class Death {
     private final Location deathLocation;
     private final Location graveLocation;
     private final long timeOfDeath;
+
     private final ItemStack[] inventoryContents;
+    private final ItemStack[] armorContents;
+    private final ItemStack offhandItem;
 
     public Death(Player player) {
         this.playerId = player.getUniqueId();
         this.deathLocation = player.getLocation();
         this.graveLocation = BlockUtils.findGraveSpot(player.getLocation().getBlock().getLocation());
         this.timeOfDeath = System.currentTimeMillis();
+
         this.inventoryContents = player.getInventory().getContents();
+        this.armorContents = player.getInventory().getArmorContents();
+        this.offhandItem = player.getInventory().getItemInOffHand();
     }
 
-    public Death(Location graveLocation, Location deathLocation, UUID playerId, long timeOfDeath, ItemStack[] stacks) {
+    public Death(Location graveLocation, Location deathLocation, UUID playerId, long timeOfDeath, ItemStack[] inventoryContents, ItemStack[] armorContents, ItemStack offhandItem) {
         this.graveLocation = graveLocation;
         this.deathLocation = deathLocation;
         this.playerId = playerId;
         this.timeOfDeath = timeOfDeath;
-        this.inventoryContents = stacks;
+
+        this.inventoryContents = inventoryContents;
+        this.armorContents = armorContents;
+        this.offhandItem = offhandItem;
     }
 
 
@@ -50,6 +59,14 @@ public class Death {
 
     public ItemStack[] getInventoryContents() {
         return inventoryContents;
+    }
+
+    public ItemStack[] getArmorContents() {
+        return armorContents;
+    }
+
+    public ItemStack getOffhandItem() {
+        return offhandItem;
     }
 
     public String toString() {

@@ -21,7 +21,7 @@ public class BlockBreakListeners implements Listener {
 
     @EventHandler
     public void onExplode(BlockExplodeEvent event) {
-        if (GraveManager.get().isGrave(event.getBlock().getLocation())) {
+        if (GraveManager.get().isGrave(event.getExplodedBlockState().getLocation())) {
             event.setCancelled(true);
         }
     }

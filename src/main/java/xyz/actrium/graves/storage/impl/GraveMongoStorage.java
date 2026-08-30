@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.bson.Document;
+import org.bukkit.inventory.ItemStack;
 import xyz.actrium.graves.ActriumGraves;
 import xyz.actrium.graves.config.impl.StorageConfig;
 import xyz.actrium.graves.death.Death;
@@ -63,11 +64,26 @@ public class GraveMongoStorage implements GraveStorage {
                 continue;
             }
 
+            ItemStack[] contents =
+                    ItemUtils.convertStringToitems(document.getString("contents"));
+
+            ItemStack[] armor =
+                    ItemUtils.convertStringToitems(document.getString("armor"));
+
+            ItemStack[] offhand =
+                    ItemUtils.convertStringToitems(document.getString("offhand"));
+
+            ItemStack offhandItem =
+                    offhand.length > 0 ? offhand[0] : null;
+
             Death data = new Death(
                     LocationUtils.locationFromString(locString),
                     LocationUtils.locationFromString(document.getString("actualDeathLocation")),
-                    UUID.fromString(document.getString("owner")), document.getLong("created"),
-                    ItemUtils.convertStringToitems(document.getString("contents"))
+                    UUID.fromString(document.getString("owner")),
+                    document.getLong("created"),
+                    contents,
+                    armor,
+                    offhandItem
             );
 
             toReturn.add(data);
@@ -84,8 +100,22 @@ public class GraveMongoStorage implements GraveStorage {
         document.append("location", LocationUtils.locationToString(data.getGraveLocation()));
         document.append("actualDeathLocation", LocationUtils.locationToString(data.getDeathLocation()));
         document.append("created", data.getTimeOfDeath());
-        document.append("contents", ItemUtils.convertItemsToString(data.getInventoryContents()));
+        document.append(
+                "contents",
+                ItemUtils.convertItemsToString(data.getInventoryContents())
+        );
 
+        document.append(
+                "armor",
+                ItemUtils.convertItemsToString(data.getArmorContents())
+        );
+
+        document.append(
+                "offhand",
+                ItemUtils.convertItemsToString(
+                        new ItemStack[]{data.getOffhandItem()}
+                )
+        );
         this.gravesCollection.insertOne(document);
     }
 

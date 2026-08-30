@@ -7,6 +7,7 @@ import xyz.actrium.graves.bstats.Metrics;
 import xyz.actrium.graves.commands.ActriumGravesCommand;
 import xyz.actrium.graves.commands.GraveCommand;
 import xyz.actrium.graves.commands.subcommands.AdminDeleteGraveSubCommand;
+import xyz.actrium.graves.commands.subcommands.AdminReturnGraveCommand;
 import xyz.actrium.graves.commands.subcommands.GraveInfoSubCommand;
 import xyz.actrium.graves.config.ConfigHandler;
 import xyz.actrium.graves.listeners.GraveInteractListener;
@@ -16,8 +17,8 @@ import xyz.actrium.graves.listeners.PlayerJoinListener;
 import xyz.actrium.graves.listeners.PlayerRespawnListener;
 import xyz.actrium.graves.listeners.block.BlockBreakListeners;
 import xyz.actrium.graves.item.ItemManager;
-import xyz.actrium.graves.menu.MenuManager;
 import xyz.actrium.graves.storage.StorageManager;
+import xyz.actrium.graves.menu.MenuManager;
 import xyz.actrium.graves.update.UpdateChecker;
 import xyz.actrium.graves.util.Logger;
 import xyz.actrium.graves.workers.GraveWorker;
@@ -34,14 +35,13 @@ public class ActriumGraves extends JavaPlugin {
     private ConfigHandler configHandler;
     public GraveManager graveManager;
     public ItemManager itemManager;
+    public MenuManager menuManager;
 
     public UpdateChecker updateChecker;
 
     public String version;
 
     private GraveCommand graveCommand;
-
-    private MenuManager menuManager;
 
     public static ActriumGraves get() {
         return instance;
@@ -77,6 +77,8 @@ public class ActriumGraves extends JavaPlugin {
             this.updateChecker.sendConsoleStatus(this.logger);
         }
 
+        this.menuManager = new MenuManager(this);
+
         this.metrics.addCustomChart(new Metrics.SingleLineChart("graves", () -> getStorageHandler().getGraveStorage().getGraves().size()));
     }
 
@@ -91,7 +93,6 @@ public class ActriumGraves extends JavaPlugin {
         this.updateChecker = new UpdateChecker(this.version);
         this.graveManager = new GraveManager(this);
         this.itemManager = new ItemManager();
-        this.menuManager = new MenuManager();
     }
 
     private void registerPermissions(PluginManager pluginManager) {
@@ -116,6 +117,7 @@ public class ActriumGraves extends JavaPlugin {
         this.graveCommand = new GraveCommand();
         this.graveCommand.registerSubCommand(new AdminDeleteGraveSubCommand());
         this.graveCommand.registerSubCommand(new GraveInfoSubCommand());
+        this.graveCommand.registerSubCommand(new AdminReturnGraveCommand());
         this.getCommand("grave").setExecutor(this.graveCommand);
     }
 
@@ -143,9 +145,6 @@ public class ActriumGraves extends JavaPlugin {
         return itemManager;
     }
 
-    public MenuManager getMenuManager() {
-        return menuManager;
-    }
 
     public void disable() {
         this.getServer().getPluginManager().disablePlugin(this);

@@ -47,18 +47,13 @@ public class GraveInteractListener implements Listener {
             }
 
             GraveManager.get().removeGrave(data);
+            ActriumGraves.get().getItemHandler().removeItem(player);
 
-            ItemStack[] contents = data.getInventoryContents();
-            int size = contents.length;
-            for(int i = 0; i < size; ++i) {
-                ItemStack content = contents[i];
-                if (content != null) {
-                    player.getWorld().dropItemNaturally(data.getGraveLocation(), content);
-                }
-            }
+            player.getInventory().setContents(data.getInventoryContents());
+            player.getInventory().setArmorContents(data.getArmorContents());
+            player.getInventory().setItemInOffHand(data.getOffhandItem());
 
             player.getWorld().playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 1.0F, 1.0F);
-            ActriumGraves.get().getItemHandler().removeItem(player);
 
         }
     }

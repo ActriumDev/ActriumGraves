@@ -59,8 +59,27 @@ public class GraveYamlStorage implements GraveStorage {
             long created = sec.getLong("created");
 
             try {
-                ItemStack[] items = ItemUtils.convertStringToitems(sec.getString("contents"));
-                Death death = new Death(graveLoc, actualDeathLocation, uuid, created, items);
+                ItemStack[] contents =
+                        ItemUtils.convertStringToitems(sec.getString("contents"));
+
+                ItemStack[] armor =
+                        ItemUtils.convertStringToitems(sec.getString("armor"));
+
+                ItemStack[] offhand =
+                        ItemUtils.convertStringToitems(sec.getString("offhand"));
+
+                ItemStack offhandItem =
+                        offhand.length > 0 ? offhand[0] : null;
+
+                Death death = new Death(
+                        graveLoc,
+                        actualDeathLocation,
+                        uuid,
+                        created,
+                        contents,
+                        armor,
+                        offhandItem
+                );
                 toReturn.add(death);
             } catch (ClassNotFoundException | IOException e) {
                 ActriumGraves.get().logger.error("Failed to get grave contents for UUID " + uuid);
@@ -77,7 +96,22 @@ public class GraveYamlStorage implements GraveStorage {
         sec.set("uuid", data.getPlayerId().toString());
         sec.set("actual-death", LocationUtils.locationToString(data.getDeathLocation()));
         sec.set("created", data.getTimeOfDeath());
-        sec.set("contents", ItemUtils.convertItemsToString(data.getInventoryContents()));
+        sec.set(
+                "contents",
+                ItemUtils.convertItemsToString(data.getInventoryContents())
+        );
+
+        sec.set(
+                "armor",
+                ItemUtils.convertItemsToString(data.getArmorContents())
+        );
+
+        sec.set(
+                "offhand",
+                ItemUtils.convertItemsToString(
+                        new ItemStack[]{data.getOffhandItem()}
+                )
+        );
         this.save();
     }
 

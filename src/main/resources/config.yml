@@ -87,9 +87,6 @@ grave:
   # Set to 0 to allow unlimited graves, this will cause lag if there are hundreds of graves.
   max-allowed: 10
 
-  # Specifies the block underneath a grave.
-  grave-under-block: "cobblestone"
-
   # Time in seconds before a grave should be automatically deleted.
   # Set to 0 to disable automatic grave despawn.
   delete-time: 86400  # 24 hours by default

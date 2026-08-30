@@ -55,10 +55,6 @@ public class GraveManager {
         Location graveLocation = data.getGraveLocation().clone();
         this.createGraveBlocks(player, graveLocation);
 
-        if (config.blockUnderGrave != Material.AIR) {
-            graveLocation.clone().subtract(0.0, 1.0, 0.0).getBlock().setType(config.blockUnderGrave);
-        }
-
         player.sendMessage(StringUtils.replacePlaceholder(ConfigHandler.get().getMessagesConfig().graveSpawn, player, graveLocation));
     }
 
@@ -87,6 +83,8 @@ public class GraveManager {
 
         if (config.graveSign) {
             Location signLoc = graveLoc.clone().add(1.0, 0.0, 0.0);
+            if (signLoc.getBlock().getType() != Material.AIR) return;
+
             signLoc.getBlock().setType(Material.OAK_SIGN);
             Sign sign = (Sign)signLoc.getBlock().getState();
 

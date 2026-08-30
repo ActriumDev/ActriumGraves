@@ -2,7 +2,7 @@ package xyz.actrium.graves;
 
 public enum Permissions {
     UPDATE_MESSAGE("updatemessage", "Allows players to see the new update message when they join the server."),
-    ADMIN_DELETE("admindelete", "Allows players to run the \"/grave admindelete\" command."),
+    ADMIN("admin", "Allows players to run admin commands."),
     INFO_COMMAND("info", "Allows players to run the \"/grave info\" command."),
     DELETE("delete", "Allows players to run the \"/grave delete\" command.");
 

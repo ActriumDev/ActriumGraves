@@ -1,53 +1,74 @@
 package xyz.actrium.graves.menu;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Menu {
+public class Menu {
 
-    protected final Player player;
+    private final int size;
+    private final String title;
 
-    protected Menu(Player player) {
-        this.player = player;
-    }
-
-    public abstract List<ItemStack> getData();
-
-    public abstract void handleClick(InventoryClickEvent event);
-
-    protected void open() {
-        Inventory inventory = Bukkit.createInventory(player, 54, ChatColor.DARK_AQUA + "Your active graves");
-        fillWithGlass(inventory);
-        for (ItemStack data : getData()) {
-            inventory.addItem(data);
-        }
-    }
-
-    private void fillWithGlass(Inventory inventory) {
-        ItemStack glassPane = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
-        int size = inventory.getSize();
-        int rows = size / 9;
-
-        // Fill top and bottom rows
-        for (int col = 0; col < 9; col++) {
-            inventory.setItem(col, glassPane); // Top row
-            inventory.setItem((rows - 1) * 9 + col, glassPane); // Bottom row
+    protected Menu(
+            int size,
+            String title
+    ) {
+        if (size % 9 != 0) {
+            throw new IllegalArgumentException(
+                    "Inventory size must be divisible by 9."
+            );
         }
 
-        // Fill left and right columns
-        for (int row = 0; row < rows; row++) {
-            inventory.setItem(row * 9, glassPane); // Left column
-            inventory.setItem(row * 9 + 8, glassPane); // Right column
+        if (size < 9 || size > 54) {
+            throw new IllegalArgumentException(
+                    "Inventory size must be between 9 and 54."
+            );
         }
+
+        this.size = size;
+        this.title = title;
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Inventory createInventory(Player viewer) {
+        Inventory inventory = Bukkit.createInventory(
+                null,
+                size,
+                title
+        );
+
+        for (MenuElement element : getElements(viewer)) {
+            if (element.getSlot() < 0 ||
+                    element.getSlot() >= size) {
+                continue;
+            }
+
+            inventory.setItem(
+                    element.getSlot(),
+                    element.getItem()
+            );
+        }
+
+        return inventory;
+    }
+
+    public List<MenuElement> getElements(Player viewer) {
+        return new ArrayList<>();
+    }
+
+    public void onOpen(Player viewer) {
+    }
+
+    public void onClose(Player viewer) {
+    }
 }

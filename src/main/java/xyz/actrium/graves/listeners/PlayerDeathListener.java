@@ -38,7 +38,7 @@ public class PlayerDeathListener implements Listener {
         if (player.getHealth() - event.getFinalDamage() <= 0.0) {
             if (hasTotem(player)) return;
             try {
-                if (GraveManager.get().getPlayerGraveCount(player) >= (long)this.graveConfig.maxGraves) {
+                if ((long)this.graveConfig.maxGraves != 0 && GraveManager.get().getPlayerGraveCount(player) >= (long)this.graveConfig.maxGraves) {
                     player.sendMessage(ConfigHandler.get().getMessagesConfig().maxGraves);
                     return;
                 }
